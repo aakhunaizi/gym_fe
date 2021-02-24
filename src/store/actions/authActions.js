@@ -11,32 +11,24 @@ const setUser = (token) => {
   };
 };
 
-export const signup = (newUser, history) => {
-  return async (dispatch) => {
-    try {
-      const res = await instance.post("/signup", newUser);
-      localStorage.setItem("token", res.data.token);
-      dispatch(setUser(res.data.token));
-      history.replace("/");
-      alert("Successfully signed up");
-    } catch (error) {
-      console.error(error);
-    }
-  };
+export const signup = (newUser, history) => async (dispatch) => {
+  try {
+    const res = await instance.post("/signup", newUser);
+    dispatch(setUser(res.data.token));
+    history.replace("/");
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-export const signin = (user, history) => {
-  return async (dispatch) => {
-    try {
-      const res = await instance.post("/signin", user);
-      localStorage.setItem("token", res.data.token);
-      dispatch(setUser(res.data.token));
-      history.replace("/");
-      alert("Successfully signed in");
-    } catch (error) {
-      console.error(error);
-    }
-  };
+export const signin = (user, history) => async (dispatch) => {
+  try {
+    const res = await instance.post("/signin", user);
+    dispatch(setUser(res.data.token));
+    history.replace("/");
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const signout = () => {

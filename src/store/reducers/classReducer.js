@@ -10,31 +10,29 @@ const reducer = (state = initialState, action) => {
     case types.FETCH_CLASSES:
       return {
         ...state,
-        classes: action.payload.classes,
+        classes: action.payload,
         loading: false,
       };
 
     case types.CREATE_CLASS:
-      const { newClass } = action.payload;
       return {
         ...state,
-        classes: [...state.classes, newClass],
+        classes: [...state.classes, action.payload],
       };
 
-    case types.DELETE_CLASS:
-      return {
-        ...state,
-        classes: state.classes.filter(
-          (_class) => _class.id !== action.payload.classId
-        ),
-      };
     case types.UPDATE_CLASS:
-      const { updatedClass } = action.payload;
+      const updatedClass = action.payload;
       return {
         ...state,
         classes: state.classes.map((_class) =>
           _class.id === updatedClass.id ? updatedClass : _class
         ),
+      };
+
+    case types.DELETE_CLASS:
+      return {
+        ...state,
+        classes: state.classes.filter((_class) => _class.id !== action.payload),
       };
     default:
       return state;

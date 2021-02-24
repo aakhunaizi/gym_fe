@@ -10,29 +10,29 @@ const reducer = (state = initialState, action) => {
     case types.FETCH_GYMS:
       return {
         ...state,
-        gyms: action.payload.gyms,
+        gyms: action.payload,
         loading: false,
       };
 
     case types.CREATE_GYM:
-      const { newGym } = action.payload;
       return {
         ...state,
-        gyms: [...state.gyms, newGym],
+        gyms: [...state.gyms, action.payload],
       };
 
-    case types.DELETE_GYM:
-      return {
-        ...state,
-        gyms: state.gyms.filter((gym) => gym.id !== action.payload.gymId),
-      };
     case types.UPDATE_GYM:
-      const { updatedProduct } = action.payload;
+      const updatedProduct = action.payload;
       return {
         ...state,
         gyms: state.gyms.map((gym) =>
           gym.id === updatedProduct.id ? updatedProduct : gym
         ),
+      };
+
+    case types.DELETE_GYM:
+      return {
+        ...state,
+        gyms: state.gyms.filter((gym) => gym.id !== action.payload),
       };
     default:
       return state;
