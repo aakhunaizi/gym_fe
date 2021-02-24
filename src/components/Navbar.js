@@ -1,6 +1,11 @@
+import { useSelector, useDispatch } from "react-redux";
 import { Logo, NavItem } from "../styles";
+import { signout } from "../store/actions/authActions";
 
 const NavBar = () => {
+  const user = useSelector((state) => state.authReducer.user);
+  const dispatch = useDispatch();
+
   return (
     <nav className="navbar navbar-expand">
       <h4 className="navbar-brand">
@@ -27,13 +32,30 @@ const NavBar = () => {
         >
           Sign In
         </NavItem>
+
+        {user && (
+          <button
+            onClick={() => dispatch(signout())}
+            className="nav-item"
+            style={{ padding: "0.25em 1em" }}
+          >
+            Sign Out
+          </button>
+        )}
         <NavItem
+          to="/users"
+          className="nav-item"
+          style={{ padding: "0.25em 1em" }}
+        >
+          Users
+        </NavItem>
+        {/* <NavItem
           to="/dashboard"
           className="nav-item"
           style={{ padding: "0.25em 1em" }}
         >
           Dashboard
-        </NavItem>
+        </NavItem> */}
         <NavItem
           to="/gyms"
           className="nav-item"
@@ -47,6 +69,13 @@ const NavBar = () => {
           style={{ padding: "0.25em 1em" }}
         >
           Classes
+        </NavItem>
+        <NavItem
+          to="/types"
+          className="nav-item"
+          style={{ padding: "0.25em 1em" }}
+        >
+          Types
         </NavItem>
       </div>
     </nav>
