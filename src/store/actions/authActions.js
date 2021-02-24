@@ -31,9 +31,10 @@ export const signin = (user, history) => async (dispatch) => {
   }
 };
 
-export const signout = () => {
+export const signout = (history) => {
   localStorage.removeItem("token");
   delete instance.defaults.headers.common.Authorization;
+  history.replace("/");
   return {
     type: types.SET_USER,
     payload: null,

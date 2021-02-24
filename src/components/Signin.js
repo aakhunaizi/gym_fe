@@ -7,10 +7,12 @@ import { Link, useHistory } from "react-router-dom";
 const Signin = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+
   const [user, setUser] = useState({
     username: "",
     password: "",
   });
+
   const [show, setShow] = useState("password");
 
   const handleChange = (event) =>
@@ -19,11 +21,6 @@ const Signin = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(signin(user, history));
-    return (
-      <div class="alert alert-primary" role="alert">
-        Signed in successfully!
-      </div>
-    );
   };
 
   return (
@@ -71,6 +68,11 @@ const Signin = () => {
           Sign In
         </button>
       </form>
+      <br />
+      <Link to="/signup">
+        <p>Don't have an account?</p>
+      </Link>
+      <br />
       <Link to="/">
         <button
           style={{ margin: "2%" }}
@@ -79,9 +81,6 @@ const Signin = () => {
         >
           Back
         </button>
-      </Link>
-      <Link to="/signup">
-        <p>Don't have an account?</p>
       </Link>
     </div>
   );
