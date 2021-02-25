@@ -2,13 +2,11 @@ import { useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
 import { Redirect, useParams } from "react-router";
 
-const ClassDetail = () => {
+const ClassDetail = ({ classes }) => {
   const user = useSelector((state) => state.authReducer.user);
 
   const { classSlug } = useParams();
-  const _class = useSelector((state) => state.classReducer.classes).find(
-    (_class) => _class.slug === classSlug
-  );
+  const _class = classes.find((_class) => _class.slug === classSlug);
 
   console.log(
     "🚀 ~ file: ClassDetail.js ~ line 10 ~ ClassDetail ~ _class",

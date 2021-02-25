@@ -2,6 +2,7 @@
 export const SET_USER = "SET_USER";
 export const FETCH_USERS = "FETCH_USERS";
 export const UPDATE_USER = "UPDATE_USER";
+export const DELETE_BOOKING = "DELETE_BOOKING";
 
 // Gym Types
 export const FETCH_GYMS = "FETCH_GYMS";

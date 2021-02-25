@@ -9,8 +9,20 @@ import GymDetail from "./GymDetail";
 import ClassesList from "./ClassesList";
 import TypesList from "./TypesList";
 import ClassDetail from "./ClassDetail";
+import Dashboard from "./Dashboard";
+import Loading from "./Loading";
+import { useSelector } from "react-redux";
 
 const Routes = () => {
+  const userLoading = useSelector((state) => state.userReducer.loading);
+  const gyms = useSelector((state) => state.gymReducer.gyms);
+  const gymLoading = useSelector((state) => state.gymReducer.loading);
+  const classes = useSelector((state) => state.classReducer.classes);
+  const classLoading = useSelector((state) => state.classReducer.loading);
+  const typeLoading = useSelector((state) => state.typeReducer.loading);
+
+  if (userLoading || gymLoading || classLoading || typeLoading)
+    return <Loading />;
   return (
     <div className="App">
       <Navbar />
@@ -19,19 +31,22 @@ const Routes = () => {
           <TypesList />
         </Route>
         <Route path="/classes/:classSlug">
-          <ClassDetail />
+          <ClassDetail classes={classes} />
         </Route>
         <Route path="/classes">
           <ClassesList />
         </Route>
         <Route path="/gyms/:gymSlug">
-          <GymDetail />
+          <GymDetail gyms={gyms} />
         </Route>
         <Route path="/gyms">
           <GymsList />
         </Route>
         <Route path="/users">
           <UsersList />
+        </Route>
+        <Route path="/dashboard">
+          <Dashboard />
         </Route>
         <Route path="/signin">
           <Signin />

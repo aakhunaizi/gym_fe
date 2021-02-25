@@ -19,13 +19,13 @@ const NavBar = () => {
         </Logo>
       </h4>
       <div className="navbar-nav ml-auto">
-        {/* <NavItem
+        <NavItem
           to="/dashboard"
           className="nav-item"
           style={{ padding: "0.25em 1em" }}
-          >
+        >
           Dashboard
-        </NavItem> */}
+        </NavItem>
 
         {user && user.type === "admin" && (
           <>

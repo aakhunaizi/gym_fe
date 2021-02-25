@@ -18,9 +18,20 @@ const reducer = (state = initialState, action) => {
       const updatedUser = action.payload;
       return {
         ...state,
-        classes: state.classes.map((_class) =>
-          _class.id === updatedUser.id ? updatedUser : _class
+        users: state.users.map((user) =>
+          user.id === updatedUser.id ? updatedUser : user
         ),
+      };
+
+    case types.DELETE_BOOKING:
+      const userUpdate = action.payload;
+      const newUser = state.users
+        .find((user) => user.id === userUpdate.id)
+        .classes.filter((cl) => cl.id !== userUpdate.class);
+      const usersList = state.users.filter((user) => user.id !== userUpdate.id);
+      return {
+        ...state,
+        users: [...usersList, newUser],
       };
 
     default:
