@@ -20,10 +20,17 @@ const ClassDetail = ({ classes }) => {
         <title>{_class.name}</title>
       </Helmet>
       <div>
-        <p>{_class.name}</p>
-
         <img src={_class.gym.image} alt={_class.gym.name} />
         <p>{_class.gym.name}</p>
+        <br />
+        <img src={_class.image} alt={_class.name} />
+        <p>{_class.name}</p>
+        <p>Price: {_class.price} BD</p>
+        <p>Date: {_class.date}</p>
+        <p>Time: {_class.time}</p>
+        <p>Number of Seats: {_class.numOfSeats}</p>
+        <p>Already Booked: {_class.bookedSeats}</p>
+        <p>Class Type: {_class.type.name}</p>
       </div>
     </>
   );
