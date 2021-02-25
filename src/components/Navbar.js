@@ -19,14 +19,6 @@ const NavBar = () => {
         </Logo>
       </h4>
       <div className="navbar-nav ml-auto">
-        <NavItem
-          to="/dashboard"
-          className="nav-item"
-          style={{ padding: "0.25em 1em" }}
-        >
-          Dashboard
-        </NavItem>
-
         {user && user.type === "admin" && (
           <>
             {/* <NavItem
@@ -56,13 +48,22 @@ const NavBar = () => {
         )}
 
         {user && user.type === "user" && (
-          <NavItem
-            to="/classes"
-            className="nav-item"
-            style={{ padding: "0.25em 1em" }}
-          >
-            Classes
-          </NavItem>
+          <>
+            <NavItem
+              to="/dashboard"
+              className="nav-item"
+              style={{ padding: "0.25em 1em" }}
+            >
+              Dashboard
+            </NavItem>
+            <NavItem
+              to="/classes"
+              className="nav-item"
+              style={{ padding: "0.25em 1em" }}
+            >
+              Classes
+            </NavItem>
+          </>
         )}
 
         {!user && (

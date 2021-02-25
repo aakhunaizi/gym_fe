@@ -25,7 +25,14 @@ const ClassDetail = ({ classes }) => {
         <br />
         <img src={_class.image} alt={_class.name} />
         <p>{_class.name}</p>
-        <p>Price: {_class.price} BD</p>
+        {_class.price === 0 ? (
+          <p>
+            <strong>FREE</strong>
+          </p>
+        ) : (
+          <p>Price: {_class.price} BD</p>
+        )}
+
         <p>Date: {_class.date}</p>
         <p>Time: {_class.time}</p>
         <p>Number of Seats: {_class.numOfSeats}</p>
